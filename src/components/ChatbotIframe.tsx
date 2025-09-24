@@ -20,12 +20,17 @@ const ChatbotIframe: React.FC<ChatbotIframeProps> = ({ onClose }) => {
       </div>
       
       <iframe
-        src={import.meta.env.VITE_CHATBOT_URL || "http://teach.excelmaster.ai/chatbot/kX2Mcc2xV30qNjqB"}
+        src={import.meta.env.VITE_CHATBOT_URL || "https://teach.excelmaster.ai/chatbot/kX2Mcc2xV30qNjqB"}
         style={{ width: '400px', height: '600px' }}
         frameBorder="0"
-        allow="microphone"
+        allow="microphone; camera; clipboard-write"
+        sandbox="allow-same-origin allow-scripts allow-forms allow-modals allow-popups allow-top-navigation"
         title="AI Chatbot"
         className="bg-white"
+        loading="lazy"
+        onError={() => {
+          console.error('Iframe加载失败，可能是CORS或网络问题');
+        }}
       />
     </div>
   );
